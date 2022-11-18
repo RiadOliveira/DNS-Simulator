@@ -1,27 +1,27 @@
 public class LinkedList {
-    DNSNode firstNode = null;
+    private DNSNode firstNode = null;
 
     public LinkedList() {
         super();
     }
 
-    public void insert(String url, String ip) {
+    public void insert(DNSNode newNode) {
         // Update case
-        DNSNode findedNode = searchDNSNode(url);
+        DNSNode findedNode = searchDNSNode(newNode.getUrl());
         if(findedNode != null) {
-            findedNode.setIp(ip);
+            findedNode.setIp(newNode.getIp());
             return;
         }
 
         // Insertion case
-        DNSNode newNode = new DNSNode(url, ip);
         if(firstNode == null) {
             firstNode = newNode;
             return;
         }
 
-        DNSNode lastDNSNode = getLastNode();
-        lastDNSNode.setNext(newNode);
+        DNSNode lastNode = getLastNode();
+        lastNode.setNext(newNode);
+        newNode.setPrevious(lastNode);
     }
 
     private DNSNode getLastNode() {
@@ -98,7 +98,21 @@ public class LinkedList {
 
         if(previous == null) firstNode = next;
         else previous.setNext(next);
-        
+
         if(next != null) next.setPrevious(previous);
+    }
+
+    public void showNodes() {
+        DNSNode iterationNode = firstNode;
+        while(iterationNode != null) {
+            System.out.println("URL: " + iterationNode.getUrl());
+            System.out.println("IP: " + iterationNode.getIp());
+            System.out.println(
+                "Frequência de busca: " + iterationNode.getAccessFrequency()
+            );
+
+            System.out.println();
+            iterationNode = iterationNode.getNext();
+        }
     }
 }
