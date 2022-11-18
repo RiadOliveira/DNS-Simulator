@@ -1,3 +1,4 @@
+package dns;
 public class DNSNode {
     private String url;
     private String ip;
@@ -10,7 +11,11 @@ public class DNSNode {
         this.url = url;
         this.ip = ip;
     }
-    
+
+    public static DNSNode FromAnotherNode(DNSNode node) {
+        return new DNSNode(node.getUrl(), node.getIp());
+    }
+
     public String accessIp() {
         accessFrequency++;
         return ip;

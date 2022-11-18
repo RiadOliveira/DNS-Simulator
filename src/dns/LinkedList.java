@@ -1,3 +1,4 @@
+package dns;
 public class LinkedList {
     private DNSNode firstNode = null;
 
@@ -114,5 +115,9 @@ public class LinkedList {
             System.out.println();
             iterationNode = iterationNode.getNext();
         }
+    }
+
+    public DNSNode getFirstNode() {
+        return firstNode;
     }
 }

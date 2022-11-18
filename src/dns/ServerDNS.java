@@ -1,8 +1,47 @@
+package dns;
+
+import utils.UtilsProvider;
+
 public class ServerDNS {
+    private static final int LISTS_DEFAULT_LENGTH = 5;
     private LinkedList[] hashTable;
 
-    public ServerDNS(int tableLength) {
-        hashTable = new LinkedList[tableLength];
+    public ServerDNS(int expectedTableCapacity) {
+        int parsedTableLength = getIdealTableLengthBasedOnExpectedCapacity(
+            expectedTableCapacity
+        );
+        hashTable = new LinkedList[parsedTableLength];
+    }
+
+    private int getLengthToReduceCollisions(int expectedLength) {
+        int powerOfTwoNextToLength = UtilsProvider.getPowerOfTwoBiggerThan(expectedLength);
+        int primeLowerThanPowerOfTwo = UtilsProvider.getFirstPrimeLowerThan(powerOfTwoNextToLength);
+
+        return primeLowerThanPowerOfTwo;
+    }
+
+    private int getIdealTableLengthBasedOnExpectedCapacity(int expectedTableCapacity) {
+        int hashTableExpectedLength = expectedTableCapacity/LISTS_DEFAULT_LENGTH;
+        return getLengthToReduceCollisions(hashTableExpectedLength);
+    }
+
+    public void handleUpdateTableCapacity(int expectedTableCapacity) {
+        LinkedList[] previousHashTable = this.hashTable;
+        
+        int parsedTableLength = getIdealTableLengthBasedOnExpectedCapacity(
+            expectedTableCapacity
+        );
+        this.hashTable = new LinkedList[parsedTableLength];
+
+        for (LinkedList list : previousHashTable) {
+            if(list == null) continue;
+
+            DNSNode iterationNode = list.getFirstNode();
+            while(iterationNode != null) {
+                insert(DNSNode.FromAnotherNode(iterationNode));
+                iterationNode = iterationNode.getNext();
+            }
+        }
     }
 
     public void insert(DNSNode newNode) {
