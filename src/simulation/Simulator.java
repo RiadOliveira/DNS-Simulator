@@ -24,7 +24,7 @@ public class Simulator {
             hasAddedAllData = dataQuantityAddedToServer == TOTAL_DATA_QUANTITY;
             if(!hasAddedAllData) {
                 getAndHandleClientOperation(serverDNS, true);
-                Thread.sleep(1000);
+                Thread.sleep(10000);
             }
         }
 
@@ -50,6 +50,7 @@ public class Simulator {
         System.out.println("[1] Pesquisar URL");
         System.out.println("[2] Inserir/Atualizar DNS");
         System.out.println("[3] Excluir DNS");
+        System.out.println("[4] Visualizar registros");
 
         if(!withoutExitOption) System.out.println("[0] Sair");
         System.out.println();
@@ -67,7 +68,7 @@ public class Simulator {
 
         if(findedIp != null) 
             System.out.println("IP encontrado: " + findedIp);
-        else System.out.println("IP não encontrado.");
+        else System.out.println("Registro DNS não encontrado.");
     }
 
     private static void handleInsertChoice(ServerDNS serverDNS) {
@@ -86,9 +87,9 @@ public class Simulator {
             System.out.println("URL não está presente no servidor.");
         } else {
             System.out.println(
-                "O dado DNS referente ao Ip: " +
+                "Os dados de DNS referente ao Ip: " +
                 removedNode.getIp() +
-                " foi removido do servidor com sucesso!"
+                " foram removidos do servidor com sucesso!"
             );
         }
     }
@@ -107,6 +108,11 @@ public class Simulator {
             }
             case 3: {
                 handleRemoveChoice(serverDNS);
+                break;
+            }
+            case 4: {
+                System.out.println();
+                serverDNS.showTable();
                 break;
             }
             default: break;

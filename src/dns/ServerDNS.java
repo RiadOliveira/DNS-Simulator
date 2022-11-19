@@ -73,7 +73,7 @@ public class ServerDNS {
 
         for(int ind=0 ; ind < urlToHash.length() ; ind++) {
             int iterationCharCode = urlToHash.charAt(ind);
-            hashedKey = (31 * hashedKey + iterationCharCode) % hashTableLength;
+            hashedKey = (hashedKey + iterationCharCode) % hashTableLength;
         }
 
         return hashedKey;

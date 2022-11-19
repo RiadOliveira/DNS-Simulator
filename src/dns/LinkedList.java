@@ -88,6 +88,7 @@ public class LinkedList {
 
     public DNSNode remove(String urlToSearch) {
         DNSNode findedNode = searchDNSNode(urlToSearch);
+        if(findedNode == null) return null;
 
         DNSNode previous = findedNode.getPrevious();
         DNSNode next = findedNode.getNext();
