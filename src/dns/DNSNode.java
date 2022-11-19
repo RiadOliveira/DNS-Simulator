@@ -1,4 +1,5 @@
 package dns;
+
 public class DNSNode {
     private String url;
     private String ip;
@@ -13,7 +14,10 @@ public class DNSNode {
     }
 
     public static DNSNode FromAnotherNode(DNSNode node) {
-        return new DNSNode(node.getUrl(), node.getIp());
+        DNSNode newNode = new DNSNode(node.getUrl(), node.getIp());
+        newNode.setAccessFrequency(node.getAccessFrequency());
+
+        return newNode;
     }
 
     public String accessIp() {
@@ -59,5 +63,9 @@ public class DNSNode {
 
     public void setNext(DNSNode next) {
         this.next = next;
+    }
+
+    public void setAccessFrequency(int accessFrequency) {
+        this.accessFrequency = accessFrequency;
     }
 }

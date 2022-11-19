@@ -57,23 +57,14 @@ public class ServerDNS {
         int urlKey = hashUrl(urlToSearch);
         if(hashTable[urlKey] == null) return null;
 
-        String findedIp = hashTable[urlKey].searchDNSIp(urlToSearch);
-        if(findedIp != null) {
-            System.out.println(
-                "URL Encontrada na posição "
-                + urlKey + " da hash table."
-            );
-            System.out.println("Respectivo IP: " + findedIp);
-        }
-
-        return findedIp;
+        return hashTable[urlKey].searchDNSIp(urlToSearch);
     }
 
-    public void remove(String urlToSearch) {
+    public DNSNode remove(String urlToSearch) {
         int urlKey = hashUrl(urlToSearch);
-        if(hashTable[urlKey] == null) return;
+        if(hashTable[urlKey] == null) return null;
 
-        hashTable[urlKey].remove(urlToSearch);
+        return hashTable[urlKey].remove(urlToSearch);
     }
 
     private int hashUrl(String urlToHash) {

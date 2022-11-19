@@ -29,6 +29,7 @@ public class SimulatorDataProvider {
         new DNSNode("animesonline.cc", "210.105.107.32:4455"),
         new DNSNode("bit.ly", "36.217.218.253:2968"),
         new DNSNode("live.com", "189.219.164.150:9427"),
+
         new DNSNode("assistironline.me", "121.69.25.192:7887"),
         new DNSNode("dzb8.com", "184.45.248.249:3885"),
         new DNSNode("esportebrasilbets.com", "150.173.154.175:1058"),
@@ -54,6 +55,7 @@ public class SimulatorDataProvider {
         new DNSNode("estadao.com.br", "106.185.122.244:6055"),
         new DNSNode("ynetnews.com", "240.60.211.250:8140"),
         new DNSNode("shopee.com.br", "142.43.64.29:4023"),
+        
         new DNSNode("goldesporte.com", "242.179.117.25:3589"),
         new DNSNode("climatempo.com.br", "160.176.47.184:9069"),
         new DNSNode("terra.com.br", "241.0.233.70:3003"),
@@ -79,6 +81,7 @@ public class SimulatorDataProvider {
         new DNSNode("pinterest.com", "120.21.55.62:9070"),
         new DNSNode("tim.com.br", "147.204.247.245:6223"),
         new DNSNode("metropoles.com", "251.68.4.33:7135"),
+        
         new DNSNode("mega.nz", "206.113.15.77:1926"),
         new DNSNode("duckduckgo.com", "120.113.120.154:9600"),
         new DNSNode("sp.gov.br", "171.100.16.58:3010"),

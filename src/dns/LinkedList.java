@@ -86,21 +86,21 @@ public class LinkedList {
         return nodeIp;
     }
 
-    public void remove(String urlToSearch) {
+    public DNSNode remove(String urlToSearch) {
         DNSNode findedNode = searchDNSNode(urlToSearch);
 
         DNSNode previous = findedNode.getPrevious();
         DNSNode next = findedNode.getNext();
 
-        if(previous == null && next == null) {
-            firstNode = null;
-            return;
+        if(previous == null && next == null) firstNode = null;
+        else {
+            if(previous == null) firstNode = next;
+            else previous.setNext(next);
+    
+            if(next != null) next.setPrevious(previous);
         }
 
-        if(previous == null) firstNode = next;
-        else previous.setNext(next);
-
-        if(next != null) next.setPrevious(previous);
+        return findedNode;
     }
 
     public void showNodes() {
